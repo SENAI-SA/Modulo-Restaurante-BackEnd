@@ -10,7 +10,7 @@ public class CardapioDTO {
 	Integer tempoPreparo;
 	String caminhoFoto;
 
-	private CardapioDTO(Cardapio cardapio) {
+	public CardapioDTO(Cardapio cardapio) {
 
 		this.idcardapio = cardapio.getIdcardapio();
 		this.nomeItem = cardapio.getNomeItem();
@@ -20,11 +20,11 @@ public class CardapioDTO {
 		this.caminhoFoto = cardapio.getCaminhoFoto();
 	}
 
-	private CardapioDTO() {
+	public CardapioDTO() {
 
 	}
 
-	private CardapioDTO(Integer idcardapio, String nomeItem, String descricao, Double preco, Integer tempoPreparo,
+	public CardapioDTO(Integer idcardapio, String nomeItem, String descricao, Double preco, Integer tempoPreparo,
 			String caminhoFoto) {
 		super();
 		this.idcardapio = idcardapio;

@@ -1,5 +1,6 @@
 package br.com.senai.restaurante.model;
 
+import br.com.senai.restaurante.DTO.EnderecoDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class Endereco {
 	String bairro;
 	String rua;
 
-	private Endereco(Endereco endereco) {
+	public  Endereco(EnderecoDTO endereco) {
 		this.idendereco = endereco.getIdendereco();
 		this.estado = endereco.getEstado();
 		this.cidade = endereco.getCidade();
@@ -26,11 +27,11 @@ public class Endereco {
 		this.rua = endereco.getRua();
 	}
 
-	private Endereco() {
+	public Endereco() {
 
 	}
 
-	private Endereco(Integer idendereco, String estado, String cidade, Integer numero, String bairro, String rua) {
+	public Endereco(Integer idendereco, String estado, String cidade, Integer numero, String bairro, String rua) {
 		super();
 		this.idendereco = idendereco;
 		this.estado = estado;
