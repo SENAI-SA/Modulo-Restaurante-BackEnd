@@ -11,7 +11,7 @@ public class EnderecoDTO {
 	String bairro;
 	String rua;
 
-	private EnderecoDTO(Endereco endereco) {
+	public EnderecoDTO(Endereco endereco) {
 		this.idendereco = endereco.getIdendereco();
 		this.estado = endereco.getEstado();
 		this.cidade = endereco.getCidade();
@@ -20,11 +20,11 @@ public class EnderecoDTO {
 		this.rua = endereco.getRua();
 	}
 
-	private EnderecoDTO() {
+	public EnderecoDTO() {
 
 	}
 
-	private EnderecoDTO(Integer idendereco, String estado, String cidade, Integer numero, String bairro, String rua) {
+	public EnderecoDTO(Integer idendereco, String estado, String cidade, Integer numero, String bairro, String rua) {
 		super();
 		this.idendereco = idendereco;
 		this.estado = estado;

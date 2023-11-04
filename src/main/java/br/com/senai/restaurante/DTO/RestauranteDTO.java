@@ -11,7 +11,7 @@ public class RestauranteDTO {
 	String contato;
 	String especialidade;
 
-	private RestauranteDTO(Restaurante restaurante) {
+	public RestauranteDTO(Restaurante restaurante) {
 		this.idrestaurante = restaurante.getIdrestaurante();
 		this.nomeEstabelecimento = restaurante.getNomeEstabelecimento();
 		this.responsavel = restaurante.getResponsavel();
@@ -20,11 +20,11 @@ public class RestauranteDTO {
 		this.especialidade = restaurante.getEspecialidade();
 	}
 
-	private RestauranteDTO() {
+	public RestauranteDTO() {
 		
 	}
 
-	private RestauranteDTO(Integer idrestaurante, String nomeEstabelecimento, String responsavel, String cnpj,
+	public RestauranteDTO(Integer idrestaurante, String nomeEstabelecimento, String responsavel, String cnpj,
 			String contato, String especialidade) {
 		super();
 		this.idrestaurante = idrestaurante;
