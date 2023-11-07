@@ -1,6 +1,7 @@
 package br.com.senai.restaurante.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +14,23 @@ import br.com.senai.restaurante.repository.RestauranteRepositoy;
 public class RestauranteService {
 
 	@Autowired
-	private RestauranteRepositoy repositoyRestauranteRepositoy;
+	private RestauranteRepositoy restauranteRepositoy;
 
 	public Restaurante salvaRestaurante(RestauranteDTO restauranteDTO) {
 		Restaurante restaurante = new Restaurante(restauranteDTO);
-		return repositoyRestauranteRepositoy.save(restaurante);
+		return restauranteRepositoy.save(restaurante);
 	}
 
 	public List<Restaurante> listaRestaurante() {
-		return repositoyRestauranteRepositoy.findAll();
+		return restauranteRepositoy.findAll();
 	}
 
 	public void excluirRestaurante(Integer id) {
-		repositoyRestauranteRepositoy.deleteById(id);
+		restauranteRepositoy.deleteById(id);  
 	}
+	
+	public Optional<Restaurante>  listaRestauranteID(Integer id) {
+		return restauranteRepositoy.findById(id);
+	}
+	
 }

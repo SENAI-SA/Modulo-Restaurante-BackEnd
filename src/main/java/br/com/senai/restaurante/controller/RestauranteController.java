@@ -1,6 +1,7 @@
 package br.com.senai.restaurante.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,14 @@ public class RestauranteController {
 		List<RestauranteDTO> restauranteDTO = restaurante.stream().map(RestauranteDTO::new).toList();
 		return ResponseEntity.ok(restauranteDTO);
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<RestauranteDTO> listaRestauranteID(Integer id) {
+		Optional<Restaurante> restaurante = restauranteService.listaRestauranteID(id);
+		Optional<RestauranteDTO> restauranteDTO = restaurante.map(RestauranteDTO::new);
+		return ResponseEntity.ok(restauranteDTO.orElse(null));
+	}
+	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluirRestaurante(@PathVariable Integer id) {

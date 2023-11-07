@@ -10,6 +10,7 @@ public class RestauranteDTO {
 	String cnpj;
 	String contato;
 	String especialidade;
+	EnderecoDTO endereco;
 
 	public RestauranteDTO(Restaurante restaurante) {
 		this.idrestaurante = restaurante.getIdrestaurante();
@@ -21,11 +22,11 @@ public class RestauranteDTO {
 	}
 
 	public RestauranteDTO() {
-		
+
 	}
 
 	public RestauranteDTO(Integer idrestaurante, String nomeEstabelecimento, String responsavel, String cnpj,
-			String contato, String especialidade) {
+			String contato, String especialidade, EnderecoDTO endereco) {
 		super();
 		this.idrestaurante = idrestaurante;
 		this.nomeEstabelecimento = nomeEstabelecimento;
@@ -33,6 +34,15 @@ public class RestauranteDTO {
 		this.cnpj = cnpj;
 		this.contato = contato;
 		this.especialidade = especialidade;
+		this.endereco = endereco;
+	}
+
+	public EnderecoDTO getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoDTO endereco) {
+		this.endereco = endereco;
 	}
 
 	public Integer getIdrestaurante() {

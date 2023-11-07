@@ -43,6 +43,7 @@ public class Restaurante {
 		this.cnpj = restaurante.getCnpj();
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
+		this.endereco = new Endereco(restaurante.getEndereco()); 
 	}
 
 	public Restaurante() {
