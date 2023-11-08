@@ -1,5 +1,6 @@
 package br.com.senai.restaurante.DTO;
 
+import br.com.senai.restaurante.model.Endereco;
 import br.com.senai.restaurante.model.Restaurante;
 
 public class RestauranteDTO {
@@ -19,6 +20,7 @@ public class RestauranteDTO {
 		this.cnpj = restaurante.getCnpj();
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
+		this.endereco = new EnderecoDTO(restaurante.getEndereco());
 	}
 
 	public RestauranteDTO() {

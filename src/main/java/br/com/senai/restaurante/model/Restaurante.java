@@ -43,6 +43,7 @@ public class Restaurante {
 		this.cnpj = restaurante.getCnpj();
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
+		
 		this.endereco = new Endereco(restaurante.getEndereco()); 
 	}
 
@@ -107,6 +108,22 @@ public class Restaurante {
 
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public List<Cardapio> getListaCardapio() {
+		return listaCardapio;
+	}
+
+	public void setListaCardapio(List<Cardapio> listaCardapio) {
+		this.listaCardapio = listaCardapio;
 	}
 
 }
