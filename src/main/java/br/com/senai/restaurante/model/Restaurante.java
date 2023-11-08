@@ -23,19 +23,15 @@ public class Restaurante {
 	String cnpj;
 	String contato;
 	String especialidade;
-	
+
 	@JoinColumn(name = "endereco_idendereco")
 	@OneToOne(cascade = CascadeType.ALL)
 	Endereco endereco;
-	
+
 	@JoinColumn(name = "restaurante_idrestaurante")
 	@OneToMany(cascade = CascadeType.ALL)
 	List<Cardapio> listaCardapio;
-	
-	
-	
-	
-	
+
 	public Restaurante(RestauranteDTO restaurante) {
 		this.idrestaurante = restaurante.getIdrestaurante();
 		this.nomeEstabelecimento = restaurante.getNomeEstabelecimento();
@@ -43,8 +39,9 @@ public class Restaurante {
 		this.cnpj = restaurante.getCnpj();
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
-		
-		this.endereco = new Endereco(restaurante.getEndereco()); 
+
+		this.endereco = new Endereco(restaurante.getEndereco());
+		this.listaCardapio = restaurante.getListaCardapio();
 	}
 
 	public Restaurante() {
@@ -52,7 +49,7 @@ public class Restaurante {
 	}
 
 	public Restaurante(Integer idrestaurante, String nomeEstabelecimento, String responsavel, String cnpj,
-			String contato, String especialidade) {
+			String contato, String especialidade, List<Cardapio> listaCardapio) {
 		super();
 		this.idrestaurante = idrestaurante;
 		this.nomeEstabelecimento = nomeEstabelecimento;
@@ -60,6 +57,7 @@ public class Restaurante {
 		this.cnpj = cnpj;
 		this.contato = contato;
 		this.especialidade = especialidade;
+		this.listaCardapio = listaCardapio;
 	}
 
 	public Integer getIdrestaurante() {

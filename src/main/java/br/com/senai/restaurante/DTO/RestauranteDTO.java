@@ -1,6 +1,8 @@
 package br.com.senai.restaurante.DTO;
 
-import br.com.senai.restaurante.model.Endereco;
+import java.util.List;
+
+import br.com.senai.restaurante.model.Cardapio;
 import br.com.senai.restaurante.model.Restaurante;
 
 public class RestauranteDTO {
@@ -9,9 +11,11 @@ public class RestauranteDTO {
 	String nomeEstabelecimento;
 	String responsavel;
 	String cnpj;
+
 	String contato;
 	String especialidade;
 	EnderecoDTO endereco;
+	List<Cardapio> listaCardapio;
 
 	public RestauranteDTO(Restaurante restaurante) {
 		this.idrestaurante = restaurante.getIdrestaurante();
@@ -21,6 +25,7 @@ public class RestauranteDTO {
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
 		this.endereco = new EnderecoDTO(restaurante.getEndereco());
+		this.listaCardapio = restaurante.getListaCardapio();
 	}
 
 	public RestauranteDTO() {
@@ -28,7 +33,7 @@ public class RestauranteDTO {
 	}
 
 	public RestauranteDTO(Integer idrestaurante, String nomeEstabelecimento, String responsavel, String cnpj,
-			String contato, String especialidade, EnderecoDTO endereco) {
+			String contato, String especialidade, EnderecoDTO endereco, List<Cardapio> listaCardapio) {
 		super();
 		this.idrestaurante = idrestaurante;
 		this.nomeEstabelecimento = nomeEstabelecimento;
@@ -37,6 +42,15 @@ public class RestauranteDTO {
 		this.contato = contato;
 		this.especialidade = especialidade;
 		this.endereco = endereco;
+		this.listaCardapio = listaCardapio;
+	}
+
+	public List<Cardapio> getListaCardapio() {
+		return listaCardapio;
+	}
+
+	public void setListaCardapio(List<Cardapio> listaCardapio) {
+		this.listaCardapio = listaCardapio;
 	}
 
 	public EnderecoDTO getEndereco() {
