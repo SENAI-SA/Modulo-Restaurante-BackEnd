@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.senai.restaurante.DTO.DadosDTO;
 import br.com.senai.restaurante.DTO.RestauranteDTO;
+import br.com.senai.restaurante.client.SecurityClient;
 import br.com.senai.restaurante.model.Restaurante;
 import br.com.senai.restaurante.service.RestauranteService;
 
@@ -24,14 +27,25 @@ import br.com.senai.restaurante.service.RestauranteService;
 public class RestauranteController {
 
 	@Autowired
+	private SecurityClient securityClient;
+	
+	@Autowired
 	private RestauranteService restauranteService;
 
 	@PostMapping
-	public ResponseEntity<RestauranteDTO> criaRestaurante(@RequestBody RestauranteDTO restauranteDTO) {
-		Restaurante restaurante = restauranteService.salvaRestaurante(restauranteDTO);
+	public ResponseEntity<RestauranteDTO> criaRestaurante(@RequestBody DadosDTO dadosDTO) {
+		Restaurante restaurante = restauranteService.salvaRestaurante(dadosDTO.getRestauranteDTO());
+		securityClient.CriarUsuario(dadosDTO.getUsuarioDTO());
 		return ResponseEntity.ok(new RestauranteDTO(restaurante));
 	}
-
+	
+	@GetMapping("/idusuario/{id}")
+	public ResponseEntity<RestauranteDTO> getRestaurantePorId(@PathVariable Long id){
+		Optional<Restaurante>RestauranteID =  restauranteService.RestaurantePorId(id);
+		return ResponseEntity.ok(RestauranteID.map(RestauranteDTO::new).orElse(null));
+	}
+	
+	
 	@GetMapping
 	public ResponseEntity<List<RestauranteDTO>> listaRestaurante() {
 		List<Restaurante> restaurante = restauranteService.listaRestaurante();

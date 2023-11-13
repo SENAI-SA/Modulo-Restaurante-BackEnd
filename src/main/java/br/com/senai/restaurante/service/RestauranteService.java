@@ -33,4 +33,8 @@ public class RestauranteService {
 		return restauranteRepositoy.findById(id);
 	}
 	
+	public Optional<Restaurante> RestaurantePorId(Long id) {
+		return restauranteRepositoy.findByIdusuario(id);
+	}
+	
 }

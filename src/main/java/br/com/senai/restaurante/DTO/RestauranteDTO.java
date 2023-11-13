@@ -11,11 +11,11 @@ public class RestauranteDTO {
 	String nomeEstabelecimento;
 	String responsavel;
 	String cnpj;
-
 	String contato;
 	String especialidade;
 	EnderecoDTO endereco;
 	List<Cardapio> listaCardapio;
+	
 
 	public RestauranteDTO(Restaurante restaurante) {
 		this.idrestaurante = restaurante.getIdrestaurante();
