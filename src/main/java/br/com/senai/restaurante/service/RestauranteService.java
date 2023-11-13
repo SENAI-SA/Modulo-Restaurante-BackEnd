@@ -16,10 +16,17 @@ public class RestauranteService {
 	@Autowired
 	private RestauranteRepositoy restauranteRepositoy;
 
+	public Restaurante salvaRestaurante(RestauranteDTO restauranteDTO, Long idusuario) {
+		Restaurante restaurante = new Restaurante(restauranteDTO);
+		restaurante.setIdusuario(idusuario);
+		return restauranteRepositoy.save(restaurante);
+	}
+	
 	public Restaurante salvaRestaurante(RestauranteDTO restauranteDTO) {
 		Restaurante restaurante = new Restaurante(restauranteDTO);
 		return restauranteRepositoy.save(restaurante);
 	}
+	
 
 	public List<Restaurante> listaRestaurante() {
 		return restauranteRepositoy.findAll();

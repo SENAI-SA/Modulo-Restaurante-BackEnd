@@ -18,7 +18,7 @@ public class Restaurante {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idrestaurante;
-	Integer idusuario;
+	Long idusuario;
 
 	String nomeEstabelecimento;
 	String responsavel;
@@ -62,11 +62,11 @@ public class Restaurante {
 		this.listaCardapio = listaCardapio;
 	}
 
-	public Integer getIdusuario() {
+	public Long getIdusuario() {
 		return idusuario;
 	}
 
-	public void setIdusuario(Integer idusuario) {
+	public void setIdusuario(Long idusuario) {
 		this.idusuario = idusuario;
 	}
 

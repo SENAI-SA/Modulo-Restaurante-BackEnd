@@ -9,7 +9,7 @@ import br.com.senai.restaurante.DTO.UsuarioDTO;
 public interface SecurityClient  {
 	
 	@PostMapping("/auth/register")
-	public void CriarUsuario(UsuarioDTO usuaDto );
+	public Long CriarUsuario(UsuarioDTO usuaDto );
 	
 	
 }
