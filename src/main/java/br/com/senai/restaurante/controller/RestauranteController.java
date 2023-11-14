@@ -20,6 +20,7 @@ import br.com.senai.restaurante.DTO.RestauranteDTO;
 import br.com.senai.restaurante.client.SecurityClient;
 import br.com.senai.restaurante.model.Restaurante;
 import br.com.senai.restaurante.service.RestauranteService;
+import feign.FeignException;
 
 @RestController
 
@@ -34,10 +35,14 @@ public class RestauranteController {
 
 	@PostMapping
 	public ResponseEntity<RestauranteDTO> criaRestaurante(@RequestBody DadosDTO dadosDTO) {
-		Long idusuario = securityClient.CriarUsuario(dadosDTO.getUsuarioDTO());
-		Restaurante restaurante = restauranteService.salvaRestaurante(dadosDTO.getRestauranteDTO(), idusuario);
-		
-		return ResponseEntity.ok(new RestauranteDTO(restaurante));
+		try {
+			Long idusuario = securityClient.CriarUsuario(dadosDTO.getUsuarioDTO());
+			Restaurante restaurante = restauranteService.salvaRestaurante(dadosDTO.getRestauranteDTO(), idusuario);
+			
+			return ResponseEntity.ok(new RestauranteDTO(restaurante));
+		} catch (FeignException e) {
+			return ResponseEntity.status(e.status()).build();
+		}
 	}
 	
 	@GetMapping("/idusuario/{id}")
