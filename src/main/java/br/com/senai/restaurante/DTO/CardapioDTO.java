@@ -1,5 +1,7 @@
 package br.com.senai.restaurante.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.senai.restaurante.model.Cardapio;
 
 public class CardapioDTO {
@@ -9,6 +11,7 @@ public class CardapioDTO {
 	Double preco;
 	Integer tempoPreparo;
 	String caminhoFoto;
+	@JsonBackReference
 	RestauranteDTO restauranteDTO;
 
 	public CardapioDTO(Cardapio cardapio) {
@@ -19,7 +22,21 @@ public class CardapioDTO {
 		this.preco = cardapio.getPreco();
 		this.tempoPreparo = cardapio.getTempoPreparo();
 		this.caminhoFoto = cardapio.getCaminhoFoto();
+		
 		this.restauranteDTO =  new RestauranteDTO(cardapio.getRestaurante());
+	}
+	
+	public static CardapioDTO criaCardapioSemRestaurante(Cardapio cardapio) {
+		
+		CardapioDTO cardapioDTO = new CardapioDTO();
+		cardapioDTO.idcardapio = cardapio.getIdcardapio();
+		cardapioDTO.nomeItem = cardapio.getNomeItem();
+		cardapioDTO.descricao = cardapio.getDescricao();
+		cardapioDTO.preco = cardapio.getPreco();
+		cardapioDTO.tempoPreparo = cardapio.getTempoPreparo();
+		cardapioDTO.caminhoFoto = cardapio.getCaminhoFoto();
+		
+		return cardapioDTO;
 	}
 
 	public CardapioDTO() {

@@ -34,8 +34,8 @@ public class RestauranteController {
 
 	@PostMapping
 	public ResponseEntity<RestauranteDTO> criaRestaurante(@RequestBody DadosDTO dadosDTO) {
-		Long idusuario = securityClient.CriarUsuario(dadosDTO.getUsuarioDTO());
-		Restaurante restaurante = restauranteService.salvaRestaurante(dadosDTO.getRestauranteDTO(), idusuario);
+	//	Long idusuario = securityClient.CriarUsuario(dadosDTO.getUsuarioDTO());
+		Restaurante restaurante = restauranteService.salvaRestaurante(dadosDTO.getRestauranteDTO(), 1L);
 		
 		return ResponseEntity.ok(new RestauranteDTO(restaurante));
 	}

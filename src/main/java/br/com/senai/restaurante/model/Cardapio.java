@@ -33,6 +33,21 @@ public class Cardapio {
 		this.tempoPreparo = cardapio.getTempoPreparo();
 		this.caminhoFoto = cardapio.getCaminhoFoto();
 		this.restaurante = new Restaurante(cardapio.getRestauranteDTO());
+		
+	}
+	
+	public static Cardapio criaCardapioSemRestaurante(CardapioDTO cardapio) {
+		
+		Cardapio cardapio1 = new Cardapio();
+		cardapio1.idcardapio = cardapio.getIdcardapio();
+		cardapio1.nomeItem = cardapio.getNomeItem();
+		cardapio1.descricao = cardapio.getDescricao();
+		cardapio1.preco = cardapio.getPreco();
+		cardapio1.tempoPreparo = cardapio.getTempoPreparo();
+		cardapio1.caminhoFoto = cardapio.getCaminhoFoto();
+		
+		return cardapio1;
+		
 	}
 
 	public Cardapio() {

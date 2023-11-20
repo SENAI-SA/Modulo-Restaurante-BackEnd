@@ -38,7 +38,7 @@ public class CardapioController {
 		return ResponseEntity.ok(cardapioDTO);
 	}
 	
-	@GetMapping("/{id")
+	@GetMapping("/{id}")
 	public ResponseEntity<List<CardapioDTO>> listaCardapioPorRestaurante(Integer id){
 		List<Cardapio> cardapio = cardapioService.listaCardapioPorRestaurante(id);
 		List<CardapioDTO> cardapioDTO = cardapio.stream().map(CardapioDTO::new).toList();
@@ -53,7 +53,7 @@ public class CardapioController {
 	}
 
 	@PutMapping
-	public ResponseEntity<CardapioDTO> atualizaEndereco(@RequestBody CardapioDTO cardapioDTO) {
+	public ResponseEntity<CardapioDTO> atualizaCardapio(@RequestBody CardapioDTO cardapioDTO) {
 		Cardapio cardapioAtualizado = cardapioService.salvaCardapio(cardapioDTO);
 		return ResponseEntity.ok(new CardapioDTO(cardapioAtualizado));
 	}
