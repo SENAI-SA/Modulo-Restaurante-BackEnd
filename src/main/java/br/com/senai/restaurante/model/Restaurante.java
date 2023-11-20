@@ -19,7 +19,6 @@ public class Restaurante {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer idrestaurante;
 	Long idusuario;
-
 	String nomeEstabelecimento;
 	String responsavel;
 	String cnpj;
@@ -30,8 +29,7 @@ public class Restaurante {
 	@OneToOne(cascade = CascadeType.ALL)
 	Endereco endereco;
 
-	@JoinColumn(name = "restaurante_idrestaurante")
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
 	List<Cardapio> listaCardapio;
 
 	public Restaurante(RestauranteDTO restaurante) {
@@ -41,9 +39,9 @@ public class Restaurante {
 		this.cnpj = restaurante.getCnpj();
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
-
 		this.endereco = new Endereco(restaurante.getEndereco());
 		this.listaCardapio = restaurante.getListaCardapio();
+		
 	}
 
 	public Restaurante() {

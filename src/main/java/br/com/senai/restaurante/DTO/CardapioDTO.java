@@ -9,6 +9,7 @@ public class CardapioDTO {
 	Double preco;
 	Integer tempoPreparo;
 	String caminhoFoto;
+	RestauranteDTO restauranteDTO;
 
 	public CardapioDTO(Cardapio cardapio) {
 
@@ -18,6 +19,7 @@ public class CardapioDTO {
 		this.preco = cardapio.getPreco();
 		this.tempoPreparo = cardapio.getTempoPreparo();
 		this.caminhoFoto = cardapio.getCaminhoFoto();
+		this.restauranteDTO =  new RestauranteDTO(cardapio.getRestaurante());
 	}
 
 	public CardapioDTO() {
@@ -25,7 +27,7 @@ public class CardapioDTO {
 	}
 
 	public CardapioDTO(Integer idcardapio, String nomeItem, String descricao, Double preco, Integer tempoPreparo,
-			String caminhoFoto) {
+			String caminhoFoto, RestauranteDTO restauranteDTO) {
 		super();
 		this.idcardapio = idcardapio;
 		this.nomeItem = nomeItem;
@@ -33,6 +35,17 @@ public class CardapioDTO {
 		this.preco = preco;
 		this.tempoPreparo = tempoPreparo;
 		this.caminhoFoto = caminhoFoto;
+		this.restauranteDTO = restauranteDTO;
+	}
+
+	
+	
+	public RestauranteDTO getRestauranteDTO() {
+		return restauranteDTO;
+	}
+
+	public void setRestauranteDTO(RestauranteDTO restauranteDTO) {
+		this.restauranteDTO = restauranteDTO;
 	}
 
 	public Integer getIdcardapio() {
