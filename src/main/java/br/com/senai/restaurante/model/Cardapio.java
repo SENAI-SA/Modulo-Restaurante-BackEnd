@@ -1,10 +1,13 @@
 package br.com.senai.restaurante.model;
 
 import br.com.senai.restaurante.DTO.CardapioDTO;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Cardapio {
@@ -17,8 +20,9 @@ public class Cardapio {
 	Double preco;
 	Integer tempoPreparo;
 	String caminhoFoto;
-
-	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "restaurante_idrestaurante")
+	Restaurante restaurante;
 	
 	public Cardapio(CardapioDTO cardapio) {
 
@@ -28,6 +32,22 @@ public class Cardapio {
 		this.preco = cardapio.getPreco();
 		this.tempoPreparo = cardapio.getTempoPreparo();
 		this.caminhoFoto = cardapio.getCaminhoFoto();
+		this.restaurante = new Restaurante(cardapio.getRestauranteDTO());
+		
+	}
+	
+	public static Cardapio criaCardapioSemRestaurante(CardapioDTO cardapio) {
+		
+		Cardapio cardapio1 = new Cardapio();
+		cardapio1.idcardapio = cardapio.getIdcardapio();
+		cardapio1.nomeItem = cardapio.getNomeItem();
+		cardapio1.descricao = cardapio.getDescricao();
+		cardapio1.preco = cardapio.getPreco();
+		cardapio1.tempoPreparo = cardapio.getTempoPreparo();
+		cardapio1.caminhoFoto = cardapio.getCaminhoFoto();
+		
+		return cardapio1;
+		
 	}
 
 	public Cardapio() {
@@ -35,7 +55,7 @@ public class Cardapio {
 	}
 
 	public Cardapio(Integer idcardapio, String nomeItem, String descricao, Double preco, Integer tempoPreparo,
-			String caminhoFoto) {
+			String caminhoFoto, Restaurante restaurante) {
 		super();
 		this.idcardapio = idcardapio;
 		this.nomeItem = nomeItem;
@@ -43,6 +63,17 @@ public class Cardapio {
 		this.preco = preco;
 		this.tempoPreparo = tempoPreparo;
 		this.caminhoFoto = caminhoFoto;
+		this.restaurante = restaurante;
+	}
+	
+	
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
 	}
 
 	public Integer getIdcardapio() {

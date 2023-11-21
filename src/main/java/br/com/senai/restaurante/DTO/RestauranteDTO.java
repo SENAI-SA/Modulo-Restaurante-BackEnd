@@ -2,7 +2,8 @@ package br.com.senai.restaurante.DTO;
 
 import java.util.List;
 
-import br.com.senai.restaurante.model.Cardapio;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import br.com.senai.restaurante.model.Restaurante;
 
 public class RestauranteDTO {
@@ -14,7 +15,8 @@ public class RestauranteDTO {
 	String contato;
 	String especialidade;
 	EnderecoDTO endereco;
-	List<Cardapio> listaCardapio;
+	@JsonManagedReference
+	List<CardapioDTO> listaCardapio;
 	
 
 	public RestauranteDTO(Restaurante restaurante) {
@@ -25,7 +27,9 @@ public class RestauranteDTO {
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
 		this.endereco = new EnderecoDTO(restaurante.getEndereco());
-		this.listaCardapio = restaurante.getListaCardapio();
+		this.listaCardapio = restaurante.getListaCardapio().stream().map(CardapioDTO::criaCardapioSemRestaurante).toList();
+		this.listaCardapio.forEach((c)->c.setRestauranteDTO(this));
+		
 	}
 
 	public RestauranteDTO() {
@@ -33,7 +37,7 @@ public class RestauranteDTO {
 	}
 
 	public RestauranteDTO(Integer idrestaurante, String nomeEstabelecimento, String responsavel, String cnpj,
-			String contato, String especialidade, EnderecoDTO endereco, List<Cardapio> listaCardapio) {
+			String contato, String especialidade, EnderecoDTO endereco, List<CardapioDTO> listaCardapio) {
 		super();
 		this.idrestaurante = idrestaurante;
 		this.nomeEstabelecimento = nomeEstabelecimento;
@@ -45,11 +49,11 @@ public class RestauranteDTO {
 		this.listaCardapio = listaCardapio;
 	}
 
-	public List<Cardapio> getListaCardapio() {
+	public List<CardapioDTO> getListaCardapio() {
 		return listaCardapio;
 	}
 
-	public void setListaCardapio(List<Cardapio> listaCardapio) {
+	public void setListaCardapio(List<CardapioDTO> listaCardapio) {
 		this.listaCardapio = listaCardapio;
 	}
 

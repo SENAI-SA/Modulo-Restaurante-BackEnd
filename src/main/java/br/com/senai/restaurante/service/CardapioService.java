@@ -19,6 +19,11 @@ public class CardapioService {
 		Cardapio cardapio = new Cardapio(cardapioDTO);
 		return cardapioRepository.save(cardapio);
 	}
+
+
+	public List<Cardapio>listaCardapioPorRestaurante (Integer id){
+		return cardapioRepository.findByRestauranteIdrestaurante(id);
+	}
 	
 	public List<Cardapio>listaCardapio (){
 		return cardapioRepository.findAll();
