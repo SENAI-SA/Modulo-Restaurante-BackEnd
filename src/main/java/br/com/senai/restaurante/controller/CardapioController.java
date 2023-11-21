@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.senai.restaurante.DTO.CardapioDTO;
 import br.com.senai.restaurante.model.Cardapio;
 import br.com.senai.restaurante.service.CardapioService;
+import br.com.senai.restaurante.service.RestauranteService;
 
 @RestController
 
@@ -25,9 +26,14 @@ public class CardapioController {
 	@Autowired
 	private CardapioService cardapioService;
 
+	@Autowired
+	private RestauranteService restauranteService;
+	
+	
 	@PostMapping
 	public ResponseEntity<CardapioDTO> criaCardapio(@RequestBody CardapioDTO cardapioDTO) {
 		Cardapio cardapio = cardapioService.salvaCardapio(cardapioDTO);
+		
 		return ResponseEntity.ok(new CardapioDTO(cardapio));
 	}
 
@@ -55,6 +61,7 @@ public class CardapioController {
 	@PutMapping
 	public ResponseEntity<CardapioDTO> atualizaCardapio(@RequestBody CardapioDTO cardapioDTO) {
 		Cardapio cardapioAtualizado = cardapioService.salvaCardapio(cardapioDTO);
+		cardapioAtualizado.setRestaurante(restauranteService.listaRestauranteID(cardapioAtualizado.getRestaurante().getIdrestaurante()).get());
 		return ResponseEntity.ok(new CardapioDTO(cardapioAtualizado));
 	}
 }
