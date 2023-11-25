@@ -27,7 +27,7 @@ public class Restaurante {
 
 	@JoinColumn(name = "endereco_idendereco")
 	@OneToOne(cascade = CascadeType.ALL)
-	
+
 	Endereco endereco;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "restaurante")
@@ -41,9 +41,12 @@ public class Restaurante {
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
 		this.endereco = new Endereco(restaurante.getEndereco());
-		this.listaCardapio = restaurante.getListaCardapio().stream().map(Cardapio::criaCardapioSemRestaurante).toList();
-		this.listaCardapio.forEach((c)->c.setRestaurante(this));
-		
+		if (restaurante.getListaCardapio() != null) {
+			this.listaCardapio = restaurante.getListaCardapio().stream().map(Cardapio::criaCardapioSemRestaurante)
+					.toList();
+			this.listaCardapio.forEach((c) -> c.setRestaurante(this));
+		}
+
 	}
 
 	public Restaurante() {
@@ -70,8 +73,6 @@ public class Restaurante {
 		this.idusuario = idusuario;
 	}
 
-	
-	
 	public Integer getIdrestaurante() {
 		return idrestaurante;
 	}

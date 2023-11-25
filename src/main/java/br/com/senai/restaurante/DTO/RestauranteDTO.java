@@ -17,7 +17,6 @@ public class RestauranteDTO {
 	EnderecoDTO endereco;
 	@JsonManagedReference
 	List<CardapioDTO> listaCardapio;
-	
 
 	public RestauranteDTO(Restaurante restaurante) {
 		this.idrestaurante = restaurante.getIdrestaurante();
@@ -27,9 +26,12 @@ public class RestauranteDTO {
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
 		this.endereco = new EnderecoDTO(restaurante.getEndereco());
-		this.listaCardapio = restaurante.getListaCardapio().stream().map(CardapioDTO::criaCardapioSemRestaurante).toList();
-		this.listaCardapio.forEach((c)->c.setRestauranteDTO(this));
-		
+		if (restaurante.getListaCardapio() != null) {
+			this.listaCardapio = restaurante.getListaCardapio().stream().map(CardapioDTO::criaCardapioSemRestaurante)
+					.toList();
+			this.listaCardapio.forEach((c) -> c.setRestauranteDTO(this));
+		}
+
 	}
 
 	public RestauranteDTO() {
