@@ -40,7 +40,9 @@ public class Restaurante {
 		this.cnpj = restaurante.getCnpj();
 		this.contato = restaurante.getContato();
 		this.especialidade = restaurante.getEspecialidade();
-		this.endereco = new Endereco(restaurante.getEndereco());
+		if (restaurante.getEndereco() != null) {
+			this.endereco = new Endereco(restaurante.getEndereco());
+		}
 		if (restaurante.getListaCardapio() != null) {
 			this.listaCardapio = restaurante.getListaCardapio().stream().map(Cardapio::criaCardapioSemRestaurante)
 					.toList();

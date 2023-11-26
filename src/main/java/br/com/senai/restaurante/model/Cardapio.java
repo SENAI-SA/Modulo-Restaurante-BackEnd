@@ -20,7 +20,7 @@ public class Cardapio {
 	Double preco;
 	Integer tempoPreparo;
 	String caminhoFoto;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name = "restaurante_idrestaurante")
 	Restaurante restaurante;
 	
