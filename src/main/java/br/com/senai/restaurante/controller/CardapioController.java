@@ -45,7 +45,7 @@ public class CardapioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<List<CardapioDTO>> listaCardapioPorRestaurante(Integer id){
+	public ResponseEntity<List<CardapioDTO>> listaCardapioPorRestaurante(@PathVariable Integer id){
 		List<Cardapio> cardapio = cardapioService.listaCardapioPorRestaurante(id);
 		List<CardapioDTO> cardapioDTO = cardapio.stream().map(CardapioDTO::new).toList();
 		return ResponseEntity.ok(cardapioDTO);

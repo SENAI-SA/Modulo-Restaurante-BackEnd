@@ -20,10 +20,10 @@ public class Cardapio {
 	Double preco;
 	Integer tempoPreparo;
 	String caminhoFoto;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "restaurante_idrestaurante")
 	Restaurante restaurante;
-	
+
 	public Cardapio(CardapioDTO cardapio) {
 
 		this.idcardapio = cardapio.getIdcardapio();
@@ -33,11 +33,10 @@ public class Cardapio {
 		this.tempoPreparo = cardapio.getTempoPreparo();
 		this.caminhoFoto = cardapio.getCaminhoFoto();
 		this.restaurante = new Restaurante(cardapio.getRestauranteDTO());
-		
+
 	}
-	
+
 	public static Cardapio criaCardapioSemRestaurante(CardapioDTO cardapio) {
-		
 		Cardapio cardapio1 = new Cardapio();
 		cardapio1.idcardapio = cardapio.getIdcardapio();
 		cardapio1.nomeItem = cardapio.getNomeItem();
@@ -45,9 +44,8 @@ public class Cardapio {
 		cardapio1.preco = cardapio.getPreco();
 		cardapio1.tempoPreparo = cardapio.getTempoPreparo();
 		cardapio1.caminhoFoto = cardapio.getCaminhoFoto();
-		
 		return cardapio1;
-		
+
 	}
 
 	public Cardapio() {
@@ -65,8 +63,6 @@ public class Cardapio {
 		this.caminhoFoto = caminhoFoto;
 		this.restaurante = restaurante;
 	}
-	
-	
 
 	public Restaurante getRestaurante() {
 		return restaurante;
